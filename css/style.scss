@@ -1,4 +1,5 @@
 @import url(mediya.css);
+@import url(animation.css);
 :root{  
    --BgdColor_dark : #202020;
 }
@@ -27,6 +28,37 @@ body{
 .control_wdw{
    width: 350px;
    height: 100%;
+   position: relative;
+   .showAcout{
+      position: absolute;
+      width: 250px;
+      background-color: var(--BgdColor_dark);
+      z-index: 1200;
+      border-radius: 5px;
+      border: 1px solid red;
+      left: 50%;
+      top: 120px;
+      transform: translate(-50%, -50%);
+      border: 1px solid #333;
+      display: none;
+      opacity: 0;
+      &.active{
+         opacity: 1;
+         display: block;
+
+      }
+      p{
+         color: #fff;
+         padding: 12px 8px;
+         display: flex;
+         column-gap: 10px;
+         cursor: pointer;
+         border: 1px solid #333;
+         &:hover{
+            background-color: #3D3D40;
+         }
+      }      
+   }
    .user{
       display: flex;
       align-items: center;
@@ -43,6 +75,7 @@ body{
          }
       }
       .user_name{
+         cursor: pointer;
          h3{
             color: #fff;
             font-family: var(--Roboto_Rr);
@@ -194,11 +227,16 @@ body{
          }
       }
    }
+
 }
 .result_wdw{
    width: 100%;
    height: 100%;
    overflow: hidden;
+   display: none;
+   &.active{
+      display: block;
+   }
    .task_container{
       width: 100%;
       height: 100%;
@@ -217,6 +255,16 @@ body{
             display: flex;
             align-items: center;
             justify-content: space-between;
+            .col:nth-child(1){
+               display: flex;
+               column-gap: 10px;
+               i{
+                  background-color: transparent;
+                  cursor: auto;
+                  font-size: 20px;
+                  padding: 6px;
+               }
+            }
             h1{
                color: #fff;
                font-size: 30px;
@@ -333,17 +381,21 @@ body{
    }
    .show_theme{
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 70px;
+      right: 3px;   
       background-color: #212121;
       padding: 15px;
       border-radius: 5px;
+      display: none;
+      &.active{
+         display: block;
+      }
       p{
          color: #fff;
          font-size: 18px;
          display: block;
          text-transform: capitalize;
-         margin-bottom: 20px;
+         margin-bottom: 10px;
       }
       ul{
          width: 100%;
@@ -354,9 +406,13 @@ body{
             width: 45px;
             height: 45px;
             cursor: pointer;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
          }
       }
    }
    
 }
+
 
