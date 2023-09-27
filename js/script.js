@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   "use strict";
   // theme window background
-  const themeColor = document.querySelector(".theme_color");
-  const themePhoto = document.querySelector(".theme_photo");
+  const themeColor = document.querySelectorAll(".theme_color");
+  const themePhoto = document.querySelectorAll(".theme_photo");
   const themeColorArr = [
     "#788CDE",
     "#BC7ABC",
@@ -30,17 +30,30 @@ document.addEventListener("DOMContentLoaded", () => {
     "f8953b820be0093d552e70a5408622c1.png",
   ];
   for (let key of themeColorArr) {
-    themeColor.insertAdjacentHTML(
-      "afterbegin",
-      `<li style = "background-color:${key}"></li>`
-    );
+    themeColor.forEach(element =>{
+      element.insertAdjacentHTML(
+        "afterbegin",
+        `<li style = "background-color:${key}"></li>`
+      );
+    })
   }
   for (let key of themePhotoArr) {
-    themePhoto.insertAdjacentHTML(
-      "afterbegin",
-      `<li style = "background-image: url(../image/${key})"></li>`
-    );
+    themePhoto.forEach(element =>{
+      element.insertAdjacentHTML(
+        "afterbegin",
+        `<li style = "background-image: url(../image/${key})"></li>`
+      );
+    })
   }
+
+
+  // theme window show 
+  const themeColorButton = document.querySelectorAll('.themeColorButton');
+  themeColorButton.forEach(element=>{
+    element.addEventListener('click', ()=>{
+      alert('ok')
+    });
+  });
 
   // accounts
   const userName = document.querySelector(".user_name");
@@ -116,6 +129,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+  // add_task input
+  const addTaskInput = document.querySelectorAll('.add_task input');
+  const addTaskIcon = document.querySelectorAll('.add_task i');
+  window.addEventListener('click', (e)=>{
+    if(e.target.classList == 'input'){
+      addTaskInput.forEach(element => {
+        element.placeholder = `Try typing 'Pay utilities bill by Friday 6pm`;
+        element.removeAttribute('readonly');
+      });
+      addTaskIcon.forEach(element =>{
+        element.classList.remove('fa-plus');
+        element.classList.add('fa-circle');
+      })
+    }
+    else{
+      addTaskInput.forEach(element =>{
+        element.placeholder = `Add a text`;
+        element.setAttribute('readonly', '');
+      })
+      addTaskIcon.forEach(element => {
+        element.classList.remove('fa-circle');
+        element.classList.add('fa-plus')
+      })      
+    }
+  });
 
 
 
