@@ -1,0 +1,26 @@
+@keyframes showThemeWindow{
+   0%{
+      top: 80px;
+      right: -20%;
+      opacity: 0;
+      display: none;
+   }
+   100%{
+      top: 80px;
+      right: 3px;
+      opacity: 1;
+      display: block;
+   }
+}
+@keyframes HideThemeWindow{
+   0%{
+      top: 80px;
+      right: 3px;
+      opacity: 1;
+   }
+   100%{
+      top: 80px;
+      right: -20%;
+      opacity: 0;
+   }
+}

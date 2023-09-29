@@ -49,9 +49,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // theme window show 
   const themeColorButton = document.querySelectorAll('.themeColorButton');
+  const ThemeColorWindow = document.querySelectorAll('.show_theme');
   themeColorButton.forEach(element=>{
     element.addEventListener('click', ()=>{
-      alert('ok')
+      ThemeColorWindow.forEach(element => {
+        element.classList.toggle('active');
+        if(element.classList.contains('active')){
+          element.style.animation = 'showThemeWindow 1s 1 forwards';
+        }
+        else{
+          element.style.animation = 'HideThemeWindow 1s 1 forwards';
+        }  
+      });
+      
+      
     });
   });
 
@@ -153,6 +164,9 @@ document.addEventListener("DOMContentLoaded", () => {
         element.classList.add('fa-plus')
       })      
     }
+    if(e.target.classList == ThemeColorWindow){
+      alert('ok')
+    } 
   });
 
 
