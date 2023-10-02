@@ -1,25 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   "use strict";
   // theme window background
-  const themeColor = document.querySelectorAll(".theme_color");
   const themePhoto = document.querySelectorAll(".theme_photo");
-  const themeColorArr = [
-    "#788CDE",
-    "#BC7ABC",
-    "#E46C8C",
-    "#E46B67",
-    "#4AA079",
-    "#479E98",
-    "#8795A0",
-    "#A0CBF1",
-    "#D6BDE7",
-    "#F5B6C2",
-    "#ECBDA2",
-    "#A48163",
-    "#9AD2BA",
-    "#8BD3CE",
-    "#BAC8D4",
-  ];
   const themePhotoArr = [
     "39662.png",
     "39664.png",
@@ -29,49 +11,82 @@ document.addEventListener("DOMContentLoaded", () => {
     "EDjOfUE.png",
     "f8953b820be0093d552e70a5408622c1.png",
   ];
-  for (let key of themeColorArr) {
-    themeColor.forEach(element =>{
-      element.insertAdjacentHTML(
-        "afterbegin",
-        `<li style = "background-color:${key}"></li>`
-      );
-    })
-  }
   for (let key of themePhotoArr) {
     themePhoto.forEach(element =>{
       element.insertAdjacentHTML(
         "afterbegin",
-        `<li style = "background-image: url(../image/${key})"></li>`
+        `<li class = "themeItems" style = "background-image: url(../image/${key})"></li>`
       );
     })
   }
 
 
   // theme window show 
-  const themeColorButton = document.querySelectorAll('.themeColorButton');
-  const ThemeColorWindow = document.querySelectorAll('.show_theme');
-  themeColorButton.forEach(element=>{
+  const themeColorButton = document.querySelectorAll('.themeColorButton'),
+    ThemeColorWindow = document.querySelectorAll('.show_theme'),
+    themeColorItemsClick = document.querySelectorAll('.themeItems');
+
+  themeColorButton.forEach((element, i)=>{
     element.addEventListener('click', ()=>{
-      ThemeColorWindow.forEach(element => {
-        element.classList.toggle('active');
-        if(element.classList.contains('active')){
-          element.style.animation = 'showThemeWindow 1s 1 forwards';
-        }
-        else{
-          element.style.animation = 'HideThemeWindow 1s 1 forwards';
-        }  
+      ThemeColorWindow.forEach((item, index) => {
+        if(i == index){
+          item.classList.toggle('active');
+          if(item.classList.contains('active')){
+            element.classList.remove('fa-ellipsis');
+            element.classList.add('fa-xmark');
+          }
+          else{
+            element.classList.remove('fa-xmark');
+            element.classList.add('fa-ellipsis');
+          }
+        }          
       });
-      
-      
     });
   });
+  themeColorItemsClick.forEach((e,index)=>{
+    e.addEventListener('click',()=>{
+      document.querySelectorAll('.result_wdw').forEach((element,index)=>{
+        if(element.classList.contains('task_container0') && element.classList.contains('active')){
+          localStorageSetImg(e, 0)
+        }
+        else if(element.classList.contains('task_container1') && element.classList.contains('active')){
+          localStorageSetImg(e, 1)
+        }
+        else if(element.classList.contains('task_container2') && element.classList.contains('active')){
+          localStorageSetImg(e, 2)
+        }
+        else if(element.classList.contains('task_container3') && element.classList.contains('active')){
+          localStorageSetImg(e, 3)
+        }
+        else if(element.classList.contains('task_container4') && element.classList.contains('active')){
+          localStorageSetImg(e, 4)
+        }
+        else if(element.classList.contains('task_container5') && element.classList.contains('active')){
+          localStorageSetImg(e, 5)
+        }
+        else if(element.classList.contains('task_container6') && element.classList.contains('active')){
+          localStorageSetImg(e, 6)
+        }
 
+      });
+    });
+  });
+  function localStorageSetImg(e, name){
+    let bg  = e.style.backgroundImage
+    localStorage.setItem(`bg${name}`, bg);
+    const bgGet = localStorage.getItem(`bg${name}`);
+    document.querySelector(`.task_container${name} .task_container`).style.backgroundImage = bgGet;  
+  }
+  for (let index = 0; index < 7; index++) {
+    let bgGet = localStorage.getItem(`bg${index}`)
+    document.querySelector(`.task_container${index} .task_container`).style.backgroundImage = bgGet;  
+  }  
   // accounts
   const userName = document.querySelector(".user_name");
   const showAccount = document.querySelector(".showAcout");
   const menuItem = document.querySelector(".menuItem");
   userName.addEventListener("click", () => {
-    showAccount.classList.add("active");
+    showAccount.classList.toggle("active");
   });
   // control_window array
   const menuItems = [
@@ -137,9 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
       onClick(index);
     });
   });
-
-
-
   // add_task input
   const addTaskInput = document.querySelectorAll('.add_task input');
   const addTaskIcon = document.querySelectorAll('.add_task i');
@@ -164,10 +176,40 @@ document.addEventListener("DOMContentLoaded", () => {
         element.classList.add('fa-plus')
       })      
     }
-    if(e.target.classList == ThemeColorWindow){
-      alert('ok')
-    } 
   });
+
+  // my day date
+  const nowDay = document.querySelector('.nowDay span')
+  const date = new Date();
+  const month = date.getMonth();
+  const monthNumber = date.getDate();
+  const weekNumber = date.getDay();
+  let weekString;
+  let monthString;
+  switch (month) {
+    case 0:monthString = 'January';break;
+    case 1:monthString = 'February';break;
+    case 2:monthString = 'March';break;
+    case 3:monthString = 'April';break;
+    case 4:monthString = 'May';break;
+    case 5:monthString = 'June';break;
+    case 6:monthString = 'July';break;
+    case 7:monthString = 'August';break;
+    case 8:monthString = 'September';break;
+    case 9:monthString = 'October';break;
+    case 10:monthString = 'November';break;
+    case 11:monthString = 'December';break;
+  }
+  switch (weekNumber) {
+    case 0:weekString = 'Su';break;
+    case 1:weekString = 'Mo';break;
+    case 2:weekString = 'Tu';break;
+    case 3:weekString = 'We';break;
+    case 4:weekString = 'Th';break;
+    case 5:weekString = 'Fr';break;
+    case 6:weekString = 'Sa';break;
+  }
+  nowDay.innerHTML = `${weekString}, ${monthNumber} ${monthString}`;
 
 
 

@@ -1,4 +1,4 @@
-@keyframes showThemeWindow{
+/* @keyframes showThemeWindow{
    0%{
       top: 80px;
       right: -20%;
@@ -17,10 +17,12 @@
       top: 80px;
       right: 3px;
       opacity: 1;
+      display: block;
    }
    100%{
       top: 80px;
       right: -20%;
       opacity: 0;
+      display: none;
    }
-}
+} */

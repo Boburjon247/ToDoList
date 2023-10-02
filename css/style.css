@@ -2,6 +2,7 @@
 @import url(animation.css);
 :root {
   --BgdColor_dark: #202020;
+  --textColor:#FFFFFF;
 }
 
 * {
@@ -44,7 +45,6 @@ body {
   background-color: var(--BgdColor_dark);
   z-index: 1200;
   border-radius: 5px;
-  border: 1px solid red;
   left: 50%;
   top: 120px;
   transform: translate(-50%, -50%);
@@ -184,7 +184,8 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: #8795A0;
+  color: var(--textColor);
+  opacity: 0.8;
 }
 .control_wdw ul li:hover {
   background-color: #323232;
@@ -253,7 +254,7 @@ body {
 .result_wdw .task_container {
   width: 100%;
   height: 100%;
-  background-image: url(../image/f8953b820be0093d552e70a5408622c1.png);
+  background-color: #1C1C1C;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -283,7 +284,7 @@ body {
   padding: 6px;
 }
 .result_wdw .task_container .header .row h1 {
-  color: #fff;
+  color: var(--textColor);
   font-size: 30px;
   font-weight: 500;
 }
@@ -310,7 +311,7 @@ body {
   background-color: rgba(107, 103, 103, 0.3098039216);
 }
 .result_wdw .task_container .header .row span {
-  color: #fff;
+  color: var(--textColor);
   font-weight: 400;
   font-size: 14px;
   line-height: 25px;
@@ -335,7 +336,7 @@ body {
   background-color: rgba(35, 35, 35, 0.641);
 }
 .result_wdw .task_container .add_task i {
-  color: #fff;
+  color: var(--textColor);
   font-weight: 400;
   padding: 10px;
 }
@@ -346,15 +347,15 @@ body {
   outline: none;
   border: none;
   font-size: 16px;
-  color: #fff;
+  color: var(--textColor);
   padding: 0 10px;
 }
 .result_wdw .task_container .add_task input::-moz-placeholder {
-  color: #fff;
+  color: var(--textColor);
   font-size: 13px;
 }
 .result_wdw .task_container .add_task input::placeholder {
-  color: #fff;
+  color: var(--textColor);
   font-size: 13px;
 }
 .result_wdw .task_modal {
@@ -370,7 +371,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: #fff;
+  color: var(--textColor);
 }
 .result_wdw .task_modal img {
   width: 100px;
@@ -395,11 +396,16 @@ body {
 .result_wdw .show_theme {
   position: absolute;
   top: 80px;
-  right: -20%;
+  right: -25%;
   background-color: #212121;
   padding: 15px;
   border-radius: 5px;
   opacity: 0;
+  transition: all 0.8s ease-in;
+}
+.result_wdw .show_theme.active {
+  right: 3px;
+  opacity: 1;
 }
 .result_wdw .show_theme p {
   color: #fff;
