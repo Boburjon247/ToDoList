@@ -3,7 +3,10 @@
 :root{  
    --BgdColor_dark : #202020;
    --textColor:#FFFFFF;
+   
 }
+
+
 *{
    padding: 0;
    margin: 0;
@@ -301,6 +304,98 @@ body{
             }
          }
       }
+      .mainContainer{
+         width: 93%;
+         position: absolute;
+         top: 52%;
+         left: 50%;
+         min-height: 80%;
+         height: 80%;
+         overflow-y: auto;
+         transform: translate(-50%, -50%);
+         padding: 10px 0;
+         
+         .mainItems{
+            display: flex;
+            position: relative;
+            padding: 13px;
+            border-radius: 5px;
+            background-color: #292a2aad;
+            margin-top: 2px;
+            input[type=checkbox] {
+               position: absolute;
+               cursor: pointer;
+               width: 0px;
+               height: 0px;
+             }
+             input[type=checkbox]:checked:before {
+               content: "";
+               display: block;
+               position: absolute;
+               width: 18px;
+               height: 18px;
+               border: 1px solid #FFCB9A;
+               border-radius: 20px;
+               background-color: #445768;  
+               transition: all 0.2s linear;
+             }
+             input[type=checkbox]:before{
+               content: "";
+               display: block;
+               position: absolute;
+               width: 18px;
+               height: 18px;
+               border: 1px solid #FFCB9A;
+               border-radius: 3px;
+               background-color: #445768;
+               
+            }             
+             input[type=checkbox]:after {
+               content: "";
+               display: block;
+               width: 0px;
+               height: 0px;
+               border: solid #FFCB9A;
+               border-width: 0 0px 0px 0;
+               -webkit-transform: rotate(180deg);
+               -ms-transform: rotate(180deg);
+               transform: rotate(180deg);
+               position: absolute;
+               top: 0px;
+               left: 50px;
+               transition: all 0.2s linear;
+             }
+             input[type=checkbox]:checked:after {
+               content: "";
+               display: block;
+               width: 5px;
+               height: 12px;
+               border: solid #FFCB9A;
+               border-width: 0 2px 2px 0;
+               -webkit-transform: rotate(45deg);
+               -ms-transform: rotate(45deg);
+               transform: rotate(45deg);
+               position: absolute;
+               top: 0px;
+               left: 9px;
+             }             
+            p{
+               text-transform: capitalize;
+               padding-left: 35px;
+               color: #Fff;
+               font-size: 20px;
+            }
+            i{
+               position: absolute;
+               top: 50%;
+               right: 5px;
+               transform: translate(-50%, -50%);
+               padding: 5px;
+               color: var(--textColor);
+               cursor: pointer;
+            }
+         }
+      }
       .add_task{
          background-color: rgba(0, 0, 0, 0.641);
          backdrop-filter: blur(5px);
@@ -339,6 +434,7 @@ body{
    
          }
       }
+
       
    }
    .task_modal{
@@ -355,6 +451,9 @@ body{
       justify-content: center;
       flex-direction: column;
       color: var(--textColor);
+      &.active{
+         display: none;
+      }
       img{
          width: 100px;
          height: 100px;
@@ -413,5 +512,10 @@ body{
    }
    
 }
-
+::-webkit-scrollbar-track{
+   background-color: transparent;
+}
+::-webkit-scrollbar-thumb{
+   background-color: transparent;
+}
 
